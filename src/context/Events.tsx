@@ -6,7 +6,7 @@ export type Event = {
   id: string;
   name: string;
   color: (typeof EVENT_COLORS)[number];
-  day: Date;
+  date: Date;
 } & (
   | {
       allDay: false;

@@ -1,5 +1,5 @@
 import { Calendar } from "./components/Calendar";
-import { EventsProvider } from "./context/events";
+import { EventsProvider } from "./context/Events";
 import "./styles.css";
 
 function App() {
