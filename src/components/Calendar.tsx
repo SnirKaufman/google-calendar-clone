@@ -7,12 +7,16 @@ import {
   eachDayOfInterval,
   subMonths,
   addMonths,
+  isSameDay,
 } from "date-fns";
 import { formatDate } from "../utils/formatDate";
 import { CalendarDay } from "./CalendarDay";
+import { useEvents } from "../context/useEvent";
 
 export function Calendar() {
   const [selectedMonth, setSelectedMonth] = useState(new Date());
+
+  const { events } = useEvents();
 
   const calendarDays = useMemo(() => {
     const firstWeekStart = startOfWeek(startOfMonth(selectedMonth));
@@ -61,6 +65,7 @@ export function Calendar() {
               day={day}
               showWeekName={index < 7}
               selectedMonth={selectedMonth}
+              events={events.filter((event) => isSameDay(day, event.date))}
             />
           );
         })}
