@@ -1,6 +1,7 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext } from "react";
 import { UnionOmit } from "../utils/types";
 import { EVENT_COLORS } from "./useEvent";
+import { useLocalStorage } from "./useLocalStorage";
 
 export type Event = {
   id: string;
@@ -34,7 +35,7 @@ type EventsProviderProps = {
 };
 
 export function EventsProvider({ children }: EventsProviderProps) {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useLocalStorage("EVENTS", []);
 
   function addEvent(eventDetails: UnionOmit<Event, "id">) {
     setEvents((currEvents) => [
